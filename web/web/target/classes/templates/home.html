@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Home - My Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="home-page">
+
+    <nav>
+        <h2 class="tlt" th:text="${name}">My Portfolio</h2>
+        <div class="navbary">
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/journey}">Journey</a>
+            <a th:href="@{/skills}">Skills</a>
+            <a th:href="@{/gallery}">Gallery</a>
+        </div>
+    </nav>
+
+    <main class="main-wrapper">
+        <div class="hero-container">
+            <div class="profile-section">
+                <img th:src="@{/image/profi.jpg}" alt="Profile Picture" class="profile-img" />
+            </div>
+
+            <div class="info-box">
+                <div class="content">
+                    <h1 th:text="'Hi, I\'m ' + ${fullName}">Hi, I'm Lorraine Geronimo</h1>
+                    <p class="section-text" th:text="${courseSection}">BSIT Student | Section 1A</p>
+                    <p class="welcome-msg" th:text="${welcomeMessage}">
+                        "Welcome! I'm a BSIT student building my way through the world of tech."
+                    </p>
+                    <button th:onclick="|window.location.href='@{/about}'|" class="btn-about">
+                        About Me
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="simple-footer">
+        <p>
+            &copy; 2026 <strong>Lorraine Geronimo</strong>
+            | Let's connect: <a th:href="${fbLink}" target="_blank" class="myfbacc">Fb.acc</a> 
+            | All Rights Reserved
+        </p>
+    </footer>
+
+</body>
+</html>

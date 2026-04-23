@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - My Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="gallery-page">
+
+    <nav>
+        <h2 class="tlt" th:text="${name}">My Portfolio</h2>
+        <div class="navbary">
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/journey}">Journey</a>
+            <a th:href="@{/skills}">Skills</a>
+            <a th:href="@{/gallery}">Gallery</a>
+        </div>
+    </nav>
+
+    <main class="gallery-main">
+        <h1 class="gallery-header">GALLERY</h1>
+
+        <div class="gallery-grid">
+            <div th:each="item : ${galleryItems}" class="gallery-card">
+                <img th:src="@{'/image/' + ${item.fileName}}" alt="Gallery Image">
+                
+                <div class="card-caption-box">
+                    <p class="card-caption-text" th:text="${item.caption}"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="simple-footer">
+        <p>
+            &copy; 2026 <strong th:text="${fullName}">Lorraine Geronimo</strong>
+            | Let's connect: <a th:href="${fbLink}" target="_blank" class="myfbacc">Fb.acc</a> 
+            | All Rights Reserved
+        </p>
+    </footer>
+
+</body>
+</html>

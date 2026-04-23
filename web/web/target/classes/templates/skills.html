@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills & Interests - Lorraine Geronimo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="skills-page">
+
+    <nav>
+        <h2 class="tlt" th:text="${name}">My Portfolio</h2>
+        <div class="navbary">
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/journey}">Journey</a>
+            <a th:href="@{/skills}">Skills</a>
+            <a th:href="@{/gallery}">Gallery</a>
+        </div>
+    </nav>
+
+    <main class="skills-main">
+        <h1 class="skills-header">Skills and Interest</h1>
+
+        <div class="carousel-wrapper draggable" id="techCarousel">
+            <div class="carousel-track track-right">
+                <div th:each="skill : ${techSkills}" class="skill-card">
+                    <div class="card-img-box">
+                        <img th:src="@{'/image/' + ${skill.imageName}}" th:alt="${skill.displayName}">
+                    </div>
+                    <div class="card-name-box">
+                        <p th:text="${skill.displayName}"></p>
+                    </div>
+                </div>
+                <div th:each="skill : ${techSkills}" class="skill-card duplicate">
+                    <div class="card-img-box">
+                        <img th:src="@{'/image/' + ${skill.imageName}}" th:alt="${skill.displayName}">
+                    </div>
+                    <div class="card-name-box">
+                        <p th:text="${skill.displayName}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-wrapper draggable" id="interestCarousel">
+            <div class="carousel-track track-left">
+                <div th:each="inter : ${interests}" class="skill-card">
+                    <div class="card-img-box">
+                        <img th:src="@{'/image/' + ${inter.imageName}}" th:alt="${inter.displayName}">
+                    </div>
+                    <div class="card-name-box">
+                        <p th:text="${inter.displayName}"></p>
+                    </div>
+                </div>
+                <div th:each="inter : ${interests}" class="skill-card duplicate">
+                    <div class="card-img-box">
+                        <img th:src="@{'/image/' + ${inter.imageName}}" th:alt="${inter.displayName}">
+                    </div>
+                    <div class="card-name-box">
+                        <p th:text="${inter.displayName}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="simple-footer">
+        <p>
+            &copy; 2026 <strong th:text="${fullName}">Lorraine Geronimo</strong>
+            | Let's connect: <a th:href="${fbLink}" target="_blank" class="myfbacc">Fb.acc</a> 
+            | All Rights Reserved
+        </p>
+    </footer>
+
+    <script>
+        const carousels = document.querySelectorAll('.draggable');
+
+        carousels.forEach(carousel => {
+            const track = carousel.querySelector('.carousel-track');
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            carousel.addEventListener('mousedown', (e) => {
+                isDown = true;
+                carousel.classList.add('grabbing');
+                track.style.animationPlayState = 'paused';
+                startX = e.pageX - carousel.offsetLeft;
+                scrollLeft = carousel.scrollLeft;
+            });
+
+            carousel.addEventListener('mouseleave', () => {
+                isDown = false;
+                carousel.classList.remove('grabbing');
+                track.style.animationPlayState = 'running';
+            });
+
+            carousel.addEventListener('mouseup', () => {
+                isDown = false;
+                carousel.classList.remove('grabbing');
+                track.style.animationPlayState = 'running';
+            });
+
+            carousel.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - carousel.offsetLeft;
+                const walk = (x - startX) * 2;
+                carousel.scrollLeft = scrollLeft - walk;
+            });
+
+            carousel.addEventListener('touchstart', (e) => {
+                isDown = true;
+                track.style.animationPlayState = 'paused';
+                startX = e.touches[0].pageX - carousel.offsetLeft;
+                scrollLeft = carousel.scrollLeft;
+            });
+
+            carousel.addEventListener('touchend', () => {
+                isDown = false;
+                track.style.animationPlayState = 'running';
+            });
+
+            carousel.addEventListener('touchmove', (e) => {
+                if (!isDown) return;
+                const x = e.touches[0].pageX - carousel.offsetLeft;
+                const walk = (x - startX) * 2;
+                carousel.scrollLeft = scrollLeft - walk;
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">About Me</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="about-page">
+
+    <nav>
+        <h2 class="tlt" th:text="${name}">My Portfolio</h2>
+        <div class="navbary">
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/journey}">Journey</a>
+            <a th:href="@{/skills}">Skills</a>
+            <a th:href="@{/gallery}">Gallery</a>
+        </div>
+    </nav>
+
+    <main class="about-section">
+        <div class="photo-display">
+            <div class="img-frame frame-bottom">
+                <img th:src="@{'/image/' + ${activityImg}}" alt="Student Activity">
+            </div>
+            <div class="img-frame frame-top">
+                <img th:src="@{'/image/' + ${campusImg}}" alt="Campus Moment">
+            </div>
+        </div>
+
+        <div class="bio-wrapper">
+            <h1 class="bio-header">ABOUT ME</h1>
+            <div class="bio-box">
+                <p>
+                    Hi! I am <strong th:text="${fullName}">Name</strong>, a second-year Information Technology student at NEUST. 
+                    While BSIT was my second choice, I have grown to love the world of technology and its endless possibilities for creativity. 
+                    I find joy in the balance of different worlds. In the kitchen, I love <strong>cooking</strong>. 
+                    On the road, I enjoy <strong>driving</strong>. When it’s time to unwind, I immerse myself in online games, 
+                    watch heart-fluttering K-Dramas, or express my creativity through <strong>drawing</strong>.
+                </p>
+                <br>
+                <p>
+                    Music plays a huge role in my life, I enjoy playing the <strong>guitar and singing</strong>, 
+                    and I am currently dreaming of learning how to play the piano. My ultimate goal is to graduate 
+                    and use my skills to contribute to the growth of <strong>my uncle's company</strong>. 
+                    I believe that no matter how difficult the path becomes, my resilience and passion for learning 
+                    will always guide me to a future of success and fulfillment.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="simple-footer">
+        <p>
+            &copy; 2026 <strong th:text="${fullName}">Lorraine Geronimo</strong>
+            | Let's connect: <a th:href="${fbLink}" target="_blank" class="myfbacc">Fb.acc</a> 
+            | All Rights Reserved
+        </p>
+    </footer>
+
+</body>
+</html>
